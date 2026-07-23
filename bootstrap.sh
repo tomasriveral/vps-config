@@ -51,40 +51,6 @@ apt install -y \
     vim
 
 ################################################################################
-# User
-################################################################################
-
-step "Creating administrator"
-
-read -rp "Username: " USERNAME
-
-adduser "$USERNAME"
-
-usermod -aG sudo,docker "$USERNAME"
-
-mkdir -p "/home/$USERNAME/.ssh"
-
-cp /root/.ssh/authorized_keys \
-   "/home/$USERNAME/.ssh/authorized_keys"
-
-chown -R "$USERNAME:$USERNAME" "/home/$USERNAME/.ssh"
-
-chmod 700 "/home/$USERNAME/.ssh"
-chmod 600 "/home/$USERNAME/.ssh/authorized_keys"
-
-################################################################################
-# Repository
-################################################################################
-
-step "Cloning configuration repository"
-
-if [ ! -d "$REPO_DIR" ]; then
-    git clone "$REPO" /home/$USERNAME/$REPO_DIR
-fi
-cd "/HOME/$USERNAME/$REPO_DIR"
-chown -R "$USERNAME:$USERNAME" "/home/$USERNAME/"
-
-################################################################################
 # Docker
 ################################################################################
 
@@ -118,6 +84,40 @@ apt install -y \
     docker-compose-plugin
 
 systemctl enable --now docker
+
+################################################################################
+# User
+################################################################################
+
+step "Creating administrator"
+
+read -rp "Username: " USERNAME
+
+adduser "$USERNAME"
+
+usermod -aG sudo,docker "$USERNAME"
+
+mkdir -p "/home/$USERNAME/.ssh"
+
+cp /root/.ssh/authorized_keys \
+   "/home/$USERNAME/.ssh/authorized_keys"
+
+chown -R "$USERNAME:$USERNAME" "/home/$USERNAME/.ssh"
+
+chmod 700 "/home/$USERNAME/.ssh"
+chmod 600 "/home/$USERNAME/.ssh/authorized_keys"
+
+################################################################################
+# Repository
+################################################################################
+
+step "Cloning configuration repository"
+
+if [ ! -d "$REPO_DIR" ]; then
+    git clone "$REPO" /home/$USERNAME/$REPO_DIR
+fi
+cd "/HOME/$USERNAME/$REPO_DIR"
+chown -R "$USERNAME:$USERNAME" "/home/$USERNAME/"
 
 ################################################################################
 # Security
