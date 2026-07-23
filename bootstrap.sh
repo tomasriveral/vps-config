@@ -116,7 +116,7 @@ step "Cloning configuration repository"
 if [ ! -d "$REPO_DIR" ]; then
     git clone "$REPO" /home/$USERNAME/$REPO_DIR
 fi
-cd "/HOME/$USERNAME/$REPO_DIR"
+cd "/home/$USERNAME/$REPO_DIR"
 chown -R "$USERNAME:$USERNAME" "/home/$USERNAME/"
 
 ################################################################################
