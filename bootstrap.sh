@@ -181,6 +181,7 @@ step "Initializing ArchiveBox"
 
 docker compose run --rm archivebox init --setup
 docker compose run archivebox config --set PUBLIC_INDEX=False PUBLIC_SNAPSHOTS=False
+docker compose run --rm archivebox config --set 'YOUTUBEDL_ARGS=["--write-description","--write-info-json","--write-thumbnail","--write-subs","--write-auto-subs","--convert-subs=srt","--no-call-home","--continue","--no-abort-on-error","--ignore-errors","--geo-bypass","--add-metadata","--format=bestvideo[height<=1080]+bestaudio/best[height<=1080]"]'
 
 ################################################################################
 # Done
