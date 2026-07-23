@@ -1,7 +1,7 @@
 services:
 
   caddy:
-    depends-on:
+    depends_on:
       - archivebox
     image: caddy:latest
     container_name: caddy

@@ -160,7 +160,16 @@ cp systemd/kdrive-rclone.service \
 systemctl daemon-reload
 systemctl enable --now kdrive-rclone
 
-mountpoint /mnt/kdrive
+sleep 1
+echo "Mounting kdrive"
+sleep 1
+echo "."
+sleep 1
+echo ".."
+sleep 1
+echo "..."
+
+mountpoint /mnt/kdrive || {echo "kDrive is still not mounted. Waiting..." && sleep 5 && mountpoint /mnt/kdrive } # if it fails we wait another 5 sec before retrying
 ls /mnt/kdrive
 
 ################################################################################

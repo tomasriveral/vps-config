@@ -31,8 +31,9 @@ After creation:
 read IP_ADDRESS
 scp bootstrap.sh root@$IP_ADDRESS:
 ssh root@$IP_ADDRESS
-./bootstrap.sh
 ```
+
+Then run `./bootstrap.sh`
 
 # 2. Deploy
 ```
