@@ -180,7 +180,7 @@ ls /mnt/kdrive
 step "Initializing ArchiveBox"
 
 docker compose run --rm archivebox init --setup
-docker compose run archivebox config --set PUBLIC_INDEX=False PUBLIC_SNAPSHOTS=False TIME_ZONE=CEST TIMEZONE=CEST
+docker compose run archivebox config --set PUBLIC_INDEX=False PUBLIC_SNAPSHOTS=False
 
 ################################################################################
 # Done
