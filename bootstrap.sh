@@ -68,19 +68,7 @@ systemctl enable --now ssh
 systemctl enable --now fail2ban
 dpkg-reconfigure unattended-upgrades
 
-echo "== installing systemd systems"
-mkdir -p /opt/server/archivebox/archivebox-data
-mkdir -p /mnt/kdrive/
-rclone config
 
-cp systemd/kdrive-rclone.service /etc/systemd/system/
-
-systemctl daemon-reload
-systemctl enable kdrive-rclone
-systemctl start kdrive-rclone
-mountpoint /mnt/kdrive
-ls /mnt/kdrive
-echo
 echo "================================"
 echo "Bootstrap finished!"
 echo
