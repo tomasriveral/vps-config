@@ -19,6 +19,7 @@ apt install -y \
   jq \
   fail2ban \
   unattended-upgrades \
+  ripgrep \
   ufw
 
 echo "== Installing Docker repository key =="
@@ -69,10 +70,9 @@ dpkg-reconfigure unattended-upgrades
 
 echo "== installing systemd systems"
 mkdir -p /opt/server/archivebox/archivebox-data
-mkdir -p /mnt/kdrive/Archive
+mkdir -p /mnt/kdrive/
 rclone config
 
-mkdir -p /mnt/kdrive
 cp systemd/kdrive-rclone.service /etc/systemd/system/
 
 systemctl daemon-reload
