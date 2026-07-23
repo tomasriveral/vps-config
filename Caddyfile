@@ -1,0 +1,3 @@
+archive.tomasrivera.ch {
+    reverse_proxy archivebox:8000
+}

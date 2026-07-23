@@ -15,7 +15,10 @@ apt install -y \
   htop \
   unzip \
   rsync \
+  rclone \
   jq \
+  fail2ban \
+  unattended-upgrades \
   ufw
 
 echo "== Installing Docker repository key =="
@@ -61,7 +64,22 @@ ufw --force enable
 
 echo "== Enabling useful services =="
 systemctl enable --now ssh
+systemctl enable --now fail2ban
+dpkg-reconfigure unattended-upgrades
 
+echo "== installing systemd systems"
+mkdir -p /opt/server/archivebox/archivebox-data
+mkdir -p /mnt/kdrive/Archive
+rclone config
+
+mkdir -p /mnt/kdrive
+cp systemd/kdrive-rclone.service /etc/systemd/system/
+
+systemctl daemon-reload
+systemctl enable kdrive-rclone
+systemctl start kdrive-rclone
+mountpoint /mnt/kdrive
+ls /mnt/kdrive
 echo
 echo "================================"
 echo "Bootstrap finished!"

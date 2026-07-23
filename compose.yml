@@ -1,0 +1,36 @@
+services:
+
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: unless-stopped
+
+    ports:
+      - "80:80"
+      - "443:443"
+
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+
+  archivebox:
+    image: archivebox/archivebox:latest
+    container_name: archivebox
+    restart: unless-stopped
+
+    environment:
+      - TZ=Europe/Zurich
+
+    volumes:
+      # Local SSD: database + config + metadata
+      - ./archivebox-data:/data
+
+      # kDrive: only the heavy archive content
+      - /mnt/kdrive/Archive:/data/archive
+
+
+volumes:
+  caddy_data:
+  caddy_config:
