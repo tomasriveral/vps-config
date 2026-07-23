@@ -51,15 +51,38 @@ apt install -y \
     vim
 
 ################################################################################
+# User
+################################################################################
+
+step "Creating administrator"
+
+read -rp "Username: " USERNAME
+
+adduser "$USERNAME"
+
+usermod -aG sudo,docker "$USERNAME"
+
+mkdir -p "/home/$USERNAME/.ssh"
+
+cp /root/.ssh/authorized_keys \
+   "/home/$USERNAME/.ssh/authorized_keys"
+
+chown -R "$USERNAME:$USERNAME" "/home/$USERNAME/.ssh"
+
+chmod 700 "/home/$USERNAME/.ssh"
+chmod 600 "/home/$USERNAME/.ssh/authorized_keys"
+
+################################################################################
 # Repository
 ################################################################################
 
 step "Cloning configuration repository"
 
 if [ ! -d "$REPO_DIR" ]; then
-    git clone "$REPO"
+    git clone "$REPO" /home/$USERNAME/$REPO_DIR
 fi
-cd "$REPO_DIR"
+cd "/HOME/$USERNAME/$REPO_DIR"
+chown -R "$USERNAME:$USERNAME" "/home/$USERNAME/"
 
 ################################################################################
 # Docker
@@ -119,28 +142,6 @@ systemctl enable --now fail2ban
 dpkg-reconfigure unattended-upgrades
 
 ################################################################################
-# User
-################################################################################
-
-step "Creating administrator"
-
-read -rp "Username: " USERNAME
-
-adduser "$USERNAME"
-
-usermod -aG sudo,docker "$USERNAME"
-
-mkdir -p "/home/$USERNAME/.ssh"
-
-cp /root/.ssh/authorized_keys \
-   "/home/$USERNAME/.ssh/authorized_keys"
-
-chown -R "$USERNAME:$USERNAME" "/home/$USERNAME/.ssh"
-
-chmod 700 "/home/$USERNAME/.ssh"
-chmod 600 "/home/$USERNAME/.ssh/authorized_keys"
-
-################################################################################
 # Storage
 ################################################################################
 
@@ -168,8 +169,8 @@ sleep 1
 echo ".."
 sleep 1
 echo "..."
-
-mountpoint /mnt/kdrive || {echo "kDrive is still not mounted. Waiting..." && sleep 5 && mountpoint /mnt/kdrive } # if it fails we wait another 5 sec before retrying
+sleep 1
+mountpoint /mnt/kdrive
 ls /mnt/kdrive
 
 ################################################################################
@@ -194,3 +195,4 @@ echo "You can now login as:"
 echo
 echo "    ssh $USERNAME@<server>"
 echo
+echo "Deploy by running the deploy.sh script"
