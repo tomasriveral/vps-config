@@ -25,7 +25,7 @@ services:
 
     volumes:
       # Local SSD: database + config + metadata
-      - ./archivebox-data:/data
+      - /opt/server/archivebox/archivebox-data:/data
 
       # kDrive: only the heavy archive content
       - /mnt/kdrive/Archive:/data/archive
