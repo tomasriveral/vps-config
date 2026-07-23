@@ -56,7 +56,9 @@ apt install -y \
 
 step "Cloning configuration repository"
 
-git clone "$REPO"
+if [ ! -d "$REPO_DIR" ]; then
+    git clone "$REPO"
+fi
 cd "$REPO_DIR"
 
 ################################################################################
@@ -73,10 +75,12 @@ curl -fsSL \
 
 chmod a+r /etc/apt/keyrings/docker.asc
 
+. /etc/os-release
+
 cat >/etc/apt/sources.list.d/docker.list <<EOF
 deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] \
-https://download.docker.com/linux/debian \
-$(. /etc/os-release && echo "$VERSION_CODENAME") stable
+https://download.docker.com/linux/$ID \
+$VERSION_CODENAME stable
 EOF
 
 apt update
