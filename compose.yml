@@ -65,7 +65,7 @@ services:
 
     volumes:
       # Your yt-dlp downloads
-      - /mnt/kdrive/YouTube:/srv
+      - /mnt/kdrive/Autre/Archive/Videos:/srv
 
       # FileBrowser database/config
       - /opt/server/filebrowser/database:/database
