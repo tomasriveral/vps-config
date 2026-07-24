@@ -29,3 +29,7 @@ status.tomasrivera.ch {
 ntfy.tomasrivera.ch {
   reverse_proxy ntfy:80
 }
+
+notes.tomasrivera.ch {
+  reverse_proxy flatnotes:8080
+}

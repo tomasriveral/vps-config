@@ -102,6 +102,20 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+  flatnotes:
+    image: dullage/flatnotes:latest
+    container_name: flatnotes
+    restart: unless-stopped
+
+    environment:
+      - TZ=Europe/Zurich
+
+    volumes:
+      # Flatnotes config / app data
+      - /opt/server/flatnotes:/data
+
+      # Your markdown notes
+      - /mnt/kdrive/Notes/quicknotes:/data/notes
 volumes:
   caddy_data:
   caddy_config:

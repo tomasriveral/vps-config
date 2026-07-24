@@ -155,7 +155,8 @@ mkdir -p \
     /opt/server/freshrss \
     /opt/server/filebrowser/database \
     /opt/server/uptime-kuma \
-    /opt/server/ntfy
+    /opt/server/ntfy \
+    /opt/server/flatnotes
 
 sudo chown -R 1000:1000 /opt/server/filebrowser # somehow filebrowser cant acces it
 
