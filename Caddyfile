@@ -1,3 +1,8 @@
+tomasrivera.ch {
+  root * /srv/www
+  file_server
+}
+
 archive.tomasrivera.ch {
     reverse_proxy archivebox:8000
 }
