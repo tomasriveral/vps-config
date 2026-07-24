@@ -153,7 +153,7 @@ mkdir -p \
     /mnt/kdrive \
     /opt/server/archivebox/archivebox-data \
     /opt/server/freshrss \
-    /opt/server/filebrowser
+    /opt/server/filebrowser/database
 
 echo
 echo "Configure rclone now."

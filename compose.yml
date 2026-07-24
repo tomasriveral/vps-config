@@ -68,7 +68,7 @@ services:
       - /mnt/kdrive/YouTube:/srv
 
       # FileBrowser database/config
-      - /opt/server/filebrowser/filebrowser.db:/database/filebrowser.db
+      - /opt/server/filebrowser/database:/database
       - /opt/server/filebrowser:/config
 
 volumes:
