@@ -114,11 +114,7 @@ services:
       - FLATNOTES_SECRET_KEY=${FLATNOTES_SECRET_KEY}
 
     volumes:
-      # Flatnotes config / app data
-      - /opt/server/flatnotes:/data
-
-      # Your markdown notes
-      - /mnt/kdrive/Notes/quicknotes:/data/notes
+      - /mnt/kdrive/Notes/quicknotes:/data
 volumes:
   caddy_data:
   caddy_config:
