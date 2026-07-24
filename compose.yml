@@ -6,6 +6,8 @@ services:
     image: caddy:latest
     container_name: caddy
     restart: unless-stopped
+    environment:
+      HLEDGER_PASSWORD_HASH: "${HLEDGER_PASSWORD_HASH}"
 
     ports:
       - "80:80"
