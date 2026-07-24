@@ -132,6 +132,7 @@ ufw default allow outgoing
 ufw allow 22/tcp
 ufw allow 80/tcp
 ufw allow 443/tcp
+ufw allow from 172.18.0.0/16 to any port 5000
 
 ufw --force enable
 
