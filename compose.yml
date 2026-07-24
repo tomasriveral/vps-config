@@ -109,6 +109,8 @@ services:
 
     environment:
       - TZ=Europe/Zurich
+      - FLATNOTES_USERNAME=${FLATNOTES_USERNAME}
+      - FLATNOTES_PASSWORD=${FLATNOTES_PASSWORD}
 
     volumes:
       # Flatnotes config / app data
