@@ -67,7 +67,7 @@ services:
 
       # FileBrowser database/config
       - /opt/server/filebrowser/filebrowser.db:/database/filebrowser.db
-      - /opt/server/filebrowser/settings.json:/config/settings.json
+      - /opt/server/filebrowser:/config
 
 volumes:
   caddy_data:
