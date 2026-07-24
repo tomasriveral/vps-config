@@ -1,0 +1,15 @@
+[Unit]
+Description=hledger-web
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+Environment="LEDGER_FILE=/mnt/kdrive/Budget/hledger.journal"
+ExecStart=/usr/bin/hledger-web --serve
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

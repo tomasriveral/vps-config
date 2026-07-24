@@ -48,6 +48,7 @@ apt install -y \
     ufw \
     unattended-upgrades \
     unzip \
+    hledger-web \
     vim
 
 ################################################################################
@@ -172,6 +173,17 @@ echo "..."
 sleep 1
 mountpoint /mnt/kdrive
 ls /mnt/kdrive
+
+###############################################################################
+# hledger-web
+##############################################################################
+
+step "Initializing hledger-web"
+cp systemd/hledger-web.service \
+   /etc/systemd/system/
+systemctl daemon-reload
+systemctl enable --now hledger-web
+
 
 ################################################################################
 # ArchiveBox
