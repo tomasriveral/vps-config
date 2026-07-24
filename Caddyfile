@@ -10,3 +10,6 @@ hledger.tomasrivera.ch {
   }
   reverse_proxy host.docker.internal:5000
 }
+rss.tomasrivera.ch {
+  reverse_proxy freshrss:8080
+}

@@ -38,6 +38,20 @@ services:
       # kDrive: only the heavy archive content
       - /mnt/kdrive/Archive:/data/archive
 
+  freshrss:
+    image: freshrss/freshrss:latest
+    container_name: freshrss
+    restart: unless-stopped
+
+    ports:
+      - "8080:80"
+
+    environment:
+      - TZ=Europe/Zurich
+      - CRON_MIN=*/20
+
+    volumes:
+      - /opt/server/freshrss:/var/www/FreshRSS/data
 
 volumes:
   caddy_data:
