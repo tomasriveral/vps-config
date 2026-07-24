@@ -72,6 +72,16 @@ services:
       - /opt/server/filebrowser/database:/database
       - /opt/server/filebrowser:/config
 
+  uptime-kuma:
+    image: louislam/uptime-kuma:latest
+    container_name: uptime-kuma
+    restart: unless-stopped
+
+    volumes:
+      - /opt/server/uptime-kuma:/app/data
+
+    ports:
+      - "3001:3001"
 volumes:
   caddy_data:
   caddy_config:

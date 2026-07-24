@@ -22,3 +22,6 @@ rss.tomasrivera.ch {
   reverse_proxy freshrss:80
 }
 
+status.tomasrivera.ch {
+  reverse_proxy uptime-kuma:3001
+}

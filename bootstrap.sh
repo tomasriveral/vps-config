@@ -153,7 +153,8 @@ mkdir -p \
     /mnt/kdrive \
     /opt/server/archivebox/archivebox-data \
     /opt/server/freshrss \
-    /opt/server/filebrowser/database
+    /opt/server/filebrowser/database \
+    /opt/server/uptime-kuma
 
 sudo chown -R 1000:1000 /opt/server/filebrowser # somehow filebrowser cant acces it
 
