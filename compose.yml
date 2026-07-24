@@ -52,6 +52,22 @@ services:
 
     volumes:
       - /opt/server/freshrss:/var/www/FreshRSS/data
+    
+  filebrowser:
+    image: filebrowser/filebrowser:latest
+    container_name: filebrowser
+    restart: unless-stopped
+
+    environment:
+      - TZ=Europe/Zurich
+
+    volumes:
+      # Your yt-dlp downloads
+      - /mnt/kdrive/YouTube:/srv
+
+      # FileBrowser database/config
+      - /opt/server/filebrowser/filebrowser.db:/database/filebrowser.db
+      - /opt/server/filebrowser/settings.json:/config/settings.json
 
 volumes:
   caddy_data:

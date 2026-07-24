@@ -152,7 +152,8 @@ step "Preparing storage"
 mkdir -p \
     /mnt/kdrive \
     /opt/server/archivebox/archivebox-data \
-    /opt/server/freshrss
+    /opt/server/freshrss \
+    /opt/server/filebrowser
 
 echo
 echo "Configure rclone now."

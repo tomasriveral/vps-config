@@ -1,6 +1,9 @@
 archive.tomasrivera.ch {
     reverse_proxy archivebox:8000
 }
+youtube-archive.tomasrivera.ch {
+    reverse_proxy filebrowser:80
+}
 hledger.tomasrivera.ch {
   log {
     output stdout
@@ -13,3 +16,4 @@ hledger.tomasrivera.ch {
 rss.tomasrivera.ch {
   reverse_proxy freshrss:80
 }
+
