@@ -25,3 +25,7 @@ rss.tomasrivera.ch {
 status.tomasrivera.ch {
   reverse_proxy uptime-kuma:3001
 }
+
+ntfy.tomasrivera.ch {
+  reverse_proxy ntfy:80
+}

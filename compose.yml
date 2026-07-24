@@ -82,6 +82,25 @@ services:
 
     ports:
       - "3001:3001"
+  ntfy:
+    image: binwiederhier/ntfy:latest
+    container_name: ntfy
+    restart: unless-stopped
+
+    command:
+      - serve
+
+    environment:
+      - TZ=Europe/Zurich
+
+    volumes:
+      - /opt/server/ntfy:/var/cache/ntfy
+
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --tries=1 -O- http://localhost:80/v1/health | grep -q 'healthy'"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
 volumes:
   caddy_data:
   caddy_config:
