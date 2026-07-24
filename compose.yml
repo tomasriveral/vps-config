@@ -3,6 +3,10 @@ services:
   caddy:
     depends_on:
       - archivebox
+      - freshrss
+      - filebrowser
+      - uptime-kuma
+      - ntfy
     image: caddy:latest
     container_name: caddy
     restart: unless-stopped
@@ -27,8 +31,6 @@ services:
     restart: unless-stopped
 
     command: server 0.0.0.0:8000
-    ports:
-      - "8000:8000"
     environment:
       - TZ=Europe/Zurich
 
@@ -44,9 +46,6 @@ services:
     container_name: freshrss
     restart: unless-stopped
 
-    ports:
-      - "8080:80"
-
     environment:
       - TZ=Europe/Zurich
       - CRON_MIN=*/20
@@ -58,8 +57,6 @@ services:
     image: filebrowser/filebrowser:latest
     container_name: filebrowser
     restart: unless-stopped
-    ports:
-      - "8081:80"
 
     environment:
       - TZ=Europe/Zurich
@@ -80,8 +77,6 @@ services:
     volumes:
       - /opt/server/uptime-kuma:/app/data
 
-    ports:
-      - "3001:3001"
   ntfy:
     image: binwiederhier/ntfy:latest
     container_name: ntfy
@@ -89,12 +84,18 @@ services:
 
     command:
       - serve
+      - --config
+      - /etc/ntfy/server.yml
 
     environment:
       - TZ=Europe/Zurich
 
     volumes:
+      # Persistent database, cache, attachments
       - /opt/server/ntfy:/var/cache/ntfy
+
+      # Server configuration
+      - /home/tomasr/vps-config/ntfy-config/server.yml:/etc/ntfy/server.yml:ro
 
     healthcheck:
       test: ["CMD-SHELL", "wget -q --tries=1 -O- http://localhost:80/v1/health | grep -q 'healthy'"]

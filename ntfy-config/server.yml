@@ -1,0 +1,6 @@
+base-url: "https://ntfy.tomasrivera.ch"
+
+auth-file: "/var/cache/ntfy/user.db"
+auth-default-access: "deny-all"
+
+attachment-cache-dir: "/var/cache/ntfy/attachments"
