@@ -1,3 +1,9 @@
 archive.tomasrivera.ch {
     reverse_proxy archivebox:8000
 }
+hledger.tomasrivera.ch {
+  basicauth {
+    tomasr $2a$14$NXz3GWokmcvjvWL7IPnmfOwBffOmXSqC9Tz4hsfiHY8.f6JW5m6tK
+  }
+  reverse_proxy localhost:5000
+}
