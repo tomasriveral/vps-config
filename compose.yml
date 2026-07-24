@@ -7,6 +7,8 @@ services:
       - filebrowser
       - uptime-kuma
       - ntfy
+      - flatnotes
+      - radicale
     image: caddy:latest
     container_name: caddy
     restart: unless-stopped
@@ -115,6 +117,20 @@ services:
 
     volumes:
       - /mnt/kdrive/Notes/quicknotes:/data
+  radicale:
+    image: tomsquest/docker-radicale:latest
+    container_name: radicale
+    restart: unless-stopped
+
+    environment:
+      - TZ=Europe/Zurich
+
+    volumes:
+      # Calendar + contacts data
+      - /opt/server/radicale/data:/data
+
+      # Configuration
+      - /opt/server/radicale/config:/config
 volumes:
   caddy_data:
   caddy_config:

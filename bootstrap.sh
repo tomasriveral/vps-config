@@ -156,7 +156,9 @@ mkdir -p \
     /opt/server/filebrowser/database \
     /opt/server/uptime-kuma \
     /opt/server/ntfy \
-    /opt/server/flatnotes
+    /opt/server/flatnotes \
+    /opt/server/radicale/config \
+    /opt/server/radicale/data
 
 sudo chown -R 1000:1000 /opt/server/filebrowser # somehow filebrowser cant acces it
 

@@ -33,3 +33,7 @@ ntfy.tomasrivera.ch {
 notes.tomasrivera.ch {
   reverse_proxy flatnotes:8080
 }
+
+calendar.tomasrivera.ch {
+  reverse_proxy radicale:5232
+}
