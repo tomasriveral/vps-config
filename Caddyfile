@@ -2,6 +2,9 @@ archive.tomasrivera.ch {
     reverse_proxy archivebox:8000
 }
 hledger.tomasrivera.ch {
+  log {
+    output stdout
+  }
   basic_auth {
     tomasr {$HLEDGER_PASSWORD_HASH}
   }
