@@ -7,7 +7,7 @@ Wants=network-online.target
 Type=simple
 User=root
 Environment="LEDGER_FILE=/mnt/kdrive/Budget/hledger.journal"
-ExecStart=/usr/bin/hledger-web --serve
+ExecStart=/usr/bin/hledger-web --serve --host=0.0.0.0
 Restart=always
 RestartSec=10
 
