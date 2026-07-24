@@ -3,7 +3,7 @@ archive.tomasrivera.ch {
 }
 hledger.tomasrivera.ch {
   basic_auth {
-    tomasr $2a$14$NXz3GWokmcvjvWL7IPnmfOwBffOmXSqC9Tz4hsfiHY8.f6JW5m6tK
+    tomasr {$HLEDGER_PASSWORD_HASH}
   }
   reverse_proxy host.docker.internal:5000
 }
