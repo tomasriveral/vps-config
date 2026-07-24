@@ -57,6 +57,8 @@ services:
     image: filebrowser/filebrowser:latest
     container_name: filebrowser
     restart: unless-stopped
+    ports:
+      - "8081:80"
 
     environment:
       - TZ=Europe/Zurich
