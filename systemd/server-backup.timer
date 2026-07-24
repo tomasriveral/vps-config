@@ -1,0 +1,9 @@
+[Unit]
+Description=Run nightly server rsync backup
+
+[Timer]
+OnCalendar=*-*-* 02:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

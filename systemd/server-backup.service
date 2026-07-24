@@ -1,0 +1,7 @@
+[Unit]
+Description=Nightly rsync backup of /opt/server to /mnt/kdrive
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rsync -a --delete /opt/server/ /mnt/kdrive/serverBackup/

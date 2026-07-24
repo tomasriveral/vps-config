@@ -175,6 +175,12 @@ sleep 1
 mountpoint /mnt/kdrive
 ls /mnt/kdrive
 
+# backup of things not in kdrive
+
+cp systemd/server-backup.* /etc/systemd/system/
+systemctl daemon-reload
+systemctll enable --now server-backup.timer
+
 ###############################################################################
 # hledger-web
 ##############################################################################
