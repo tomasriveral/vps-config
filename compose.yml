@@ -130,7 +130,7 @@ services:
       - /opt/server/radicale/data:/data
 
       # Configuration
-      - /opt/server/radicale/config:/config
+      - /home/tomasr/vps-config/radicale-config:/config
 volumes:
   caddy_data:
   caddy_config:

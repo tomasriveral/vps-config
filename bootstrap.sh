@@ -212,6 +212,18 @@ docker compose run archivebox config --set PUBLIC_INDEX=False PUBLIC_SNAPSHOTS=F
 docker compose run --rm archivebox config --set SAVE_WGET=True SAVE_READABILITY=True SAVE_SINGLEFILE=True SAVE_PDF=True SAVE_SCREENSHOT=False SAVE_MEDIA=True SAVE_ARCHIVE_DOT_ORG=False SAVE_MERCURY=False
 docker compose run --rm archivebox config --set 'YOUTUBEDL_ARGS=["--write-description","--write-info-json","--write-thumbnail","--write-subs","--write-auto-subs","--convert-subs=srt","--no-call-home","--continue","--no-abort-on-error","--ignore-errors","--geo-bypass","--add-metadata","--format=bestvideo[height<=1080]+bestaudio/best[height<=1080]"]'
 
+####################################################################
+# Radicalé
+##################\\\\\\\\\\\
+
+step "Initializing Radicalé"
+
+echo "Create user: tomasr"
+docker run --rm -it \
+  -v /opt/server/radicale/data:/data \
+  httpd:2.4-alpine \
+  htpasswd -B -c /data/users tomasr
+
 ################################################################################
 # Done
 ################################################################################
