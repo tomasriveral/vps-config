@@ -179,7 +179,7 @@ ls /mnt/kdrive
 
 cp systemd/server-backup.* /etc/systemd/system/
 systemctl daemon-reload
-systemctll enable --now server-backup.timer
+systemctl enable --now server-backup.timer
 
 ###############################################################################
 # hledger-web
