@@ -4,7 +4,6 @@ services:
     depends_on:
       - archivebox
       - freshrss
-      - filebrowser
       - uptime-kuma
       - ntfy
       - flatnotes
@@ -57,22 +56,6 @@ services:
     volumes:
       - /opt/server/freshrss:/var/www/FreshRSS/data
     
-  filebrowser:
-    image: filebrowser/filebrowser:latest
-    container_name: filebrowser
-    restart: unless-stopped
-
-    environment:
-      - TZ=Europe/Zurich
-
-    volumes:
-      # Your yt-dlp downloads
-      - /mnt/kdrive/Autre/Archive/Videos:/srv
-
-      # FileBrowser database/config
-      - /opt/server/filebrowser/database:/database
-      - /opt/server/filebrowser:/config
-
   uptime-kuma:
     image: louislam/uptime-kuma:latest
     container_name: uptime-kuma
