@@ -44,3 +44,7 @@ metube.tomasrivera.ch {
   }
   reverse_proxy metube:8081
 }
+
+books.tomasrivera.ch {
+  reverse_proxy jelu:11111
+}

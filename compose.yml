@@ -134,6 +134,14 @@ services:
 
       # MeTube application state
       - /opt/server/metube:/metube
+  jelu:
+    image: wabayang/jelu:latest
+    container_name: jelu
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Zurich
+    volumes:
+      - /opt/server/jelu:/data
 volumes:
   caddy_data:
   caddy_config:
