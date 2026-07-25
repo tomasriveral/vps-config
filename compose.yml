@@ -138,7 +138,7 @@ services:
     restart: unless-stopped
 
     environment:
-      - YTDL_OPTIONS='{"writesubtitles":true,"writeautomaticsub":true,"writethumbnail":true,"writeinfojson":true,"embedmetadata":true,"embedthumbnail":true}'
+      - YTDL_OPTIONS={"writesubtitles":true,"writeautomaticsub":true,"writethumbnail":true,"writeinfojson":true,"embedmetadata":true,"embedthumbnail":true}
       - MAX_CONCURRENT_DOWNLOADS=1
       - STATE_DIR=/metube
       - YTDL_NIGHTLY_UPDATE_TIME=03:00
