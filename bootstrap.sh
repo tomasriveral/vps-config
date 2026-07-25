@@ -159,7 +159,9 @@ mkdir -p \
     /opt/server/radicale/config \
     /opt/server/radicale/data \
     /opt/server/metube \
-    /opt/server/jelu
+    /opt/server/jelu \
+    /opt/server/jellyfin/config \
+    /opt/server/jellyfin/cache
 
 sudo chown -R 1000:1000 /opt/server/filebrowser # somehow filebrowser cant acces it
 

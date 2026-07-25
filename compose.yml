@@ -10,6 +10,7 @@ services:
       - radicale
       - metube
       - jelu
+      - jellyfin
     image: caddy:latest
     container_name: caddy
     restart: unless-stopped
@@ -143,6 +144,24 @@ services:
       - TZ=Europe/Zurich
     volumes:
       - /opt/server/jelu:/data
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    restart: unless-stopped
+
+    environment:
+      - TZ=Europe/Zurich
+
+    volumes:
+      # Jellyfin configuration/database
+      - /opt/server/jellyfin/config:/config
+
+      # Transcoding cache
+      - /opt/server/jellyfin/cache:/cache
+
+      # Your MeTube archive (read-only)
+      - /mnt/kdrive/Autre/Archive/Videos:/media/videos:ro
+    mem_limit: 1500m
 volumes:
   caddy_data:
   caddy_config:

@@ -45,6 +45,10 @@ metube.tomasrivera.ch {
   reverse_proxy metube:8081
 }
 
+videos.tomasrivera.ch {
+  reverse_proxy jellyfin:8096
+}
+
 books.tomasrivera.ch {
   reverse_proxy jelu:11111
 }
