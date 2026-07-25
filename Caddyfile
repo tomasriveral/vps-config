@@ -52,3 +52,7 @@ videos.tomasrivera.ch {
 books.tomasrivera.ch {
   reverse_proxy jelu:11111
 }
+
+convert.tomasrivera.ch {
+  reverse_proxy transmute:3313
+}

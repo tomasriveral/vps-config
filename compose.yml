@@ -162,6 +162,17 @@ services:
       # Your MeTube archive (read-only)
       - /mnt/kdrive/Autre/Archive/Videos:/media/videos:ro
     mem_limit: 1500m
+  transmute:
+    image: ghcr.io/transmute-app/transmute:main
+    container_name: transmute
+    restart: unless-stopped
+
+    volumes:
+      - /opt/server/transmute:/app/data
+
+    environment:
+      AUTH_SECRET_KEY: "${TRANSMUTE_SECRET_KEY}"
+      AUTH_ACCESS_TOKEN_EXPIRE_MINUTES: 120
 volumes:
-  caddy_data:
-  caddy_config:
+  caddy_data: /opt/server/caddy/data
+  caddy_config: /opt/server/caddy/config
