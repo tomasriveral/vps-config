@@ -146,7 +146,7 @@ services:
 
     volumes:
       # Your video archive
-      - /mt/kdrive/Autre/Archive/Videos:/downloads
+      - /mnt/kdrive/Autre/Archive/Videos:/downloads
 
       # MeTube application state
       - /opt/server/metube:/metube
