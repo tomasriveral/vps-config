@@ -40,7 +40,7 @@ calendar.tomasrivera.ch {
 
 metube.tomasrivera.ch {
   basic_auth {
-    tomasr {$METUBE_PASSWIRD_HASH}
+    tomasr {$METUBE_PASSWORD_HASH}
   }
   reverse_proxy metube:8081
 }
