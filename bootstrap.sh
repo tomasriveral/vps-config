@@ -158,7 +158,8 @@ mkdir -p \
     /opt/server/ntfy \
     /opt/server/flatnotes \
     /opt/server/radicale/config \
-    /opt/server/radicale/data
+    /opt/server/radicale/data \
+    /opt/server/metube
 
 sudo chown -R 1000:1000 /opt/server/filebrowser # somehow filebrowser cant acces it
 

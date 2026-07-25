@@ -131,6 +131,24 @@ services:
 
       # Configuration
       - /home/tomasr/vps-config/radicale-config:/config
+  metube:
+    image: alexta69/metube:latest
+    container_name: metube
+    restart: unless-stopped
+
+    environment:
+      - YTDL_OPTIONS='{"writesubtitles":true,"writeautomaticsub":true,"writethumbnail":true,"writeinfojson":true,"embedmetadata":true,"embedthumbnail":true}'
+      - MAX_CONCURRENT_DOWNLOADS=1
+      - STATE_DIR=/metube
+      - YTDL_NIGHTLY_UPDATE_TIME="03:00"
+      - TZ=Europe/Zurich
+
+    volumes:
+      # Your video archive
+      - /mt/kdrive/Autre/Archive/Videos:/downloads
+
+      # MeTube application state
+      - /opt/server/metube:/metube
 volumes:
   caddy_data:
   caddy_config:

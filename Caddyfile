@@ -37,3 +37,7 @@ notes.tomasrivera.ch {
 calendar.tomasrivera.ch {
   reverse_proxy radicale:5232
 }
+
+metube.tomasrivera.ch {
+  reverse_proxy metube:8081
+}
