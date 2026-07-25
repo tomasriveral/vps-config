@@ -24,8 +24,8 @@ services:
 
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data:/data
-      - caddy_config:/config
+      - /opt/server/caddy/data:/data
+      - /opt/server/caddy/config:/config
       - /home/tomasr/vps-config/web-server:/srv/www
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -173,6 +173,3 @@ services:
     environment:
       AUTH_SECRET_KEY: "${TRANSMUTE_SECRET_KEY}"
       AUTH_ACCESS_TOKEN_EXPIRE_MINUTES: 120
-volumes:
-  caddy_data: /opt/server/caddy/data
-  caddy_config: /opt/server/caddy/config
