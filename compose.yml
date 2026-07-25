@@ -9,6 +9,7 @@ services:
       - ntfy
       - flatnotes
       - radicale
+      - metube
     image: caddy:latest
     container_name: caddy
     restart: unless-stopped
