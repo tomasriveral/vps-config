@@ -3,8 +3,11 @@ import time
 import sqlite3
 import requests
 import subprocess
+import random
 
 from urllib.parse import urlparse
+
+random.seed()
 
 def load_env_file(path=".env"):
     if not os.path.exists(path):
@@ -22,7 +25,13 @@ def load_env_file(path=".env"):
             os.environ.setdefault(key, value)
 
 
-load_env_file()
+load_env_file()Initialize the random number generator.
+
+If a is omitted or None, the current system time is used. If randomness sources are provided by the operating system, they are used instead of the system time (see the os.urandom() function for details on availability).
+
+If a is an int, its absolute value is used directly.
+
+With version 2 (the default), a str, bytes, or bytearray object gets converted to an int and all of its bits are used.
 
 FRESHRSS_DB = os.environ["FRESHRSS_DB"]
 ARCHIVE_INDEX = os.environ["ARCHIVE_INDEX"]
@@ -113,7 +122,7 @@ def send_to_metube(url):
 
     except Exception as e:
         print("MeTube error:", e)
-        return False
+        return (False, e)
 
 def send_to_archivebox(url):
     try:
@@ -138,7 +147,7 @@ def send_to_archivebox(url):
         if r.returncode != 0:
             print("ArchiveBox error:")
             print(r.stderr)
-            return False
+            return (False, r.stderr)
 
         print(r.stdout)
         return True
@@ -147,11 +156,11 @@ def send_to_archivebox(url):
         print("ArchiveBox error:", e)
         return False
 
-def notify_failure(url):
+def notify_failure(url, text):
     try:
         requests.post(
             NTFY_URL + "/Alerts",
-            data=f"Failed to archive {url}",
+            data=f"Failed to archive {url}\n{text}",
             auth=("", NTFY_TOKEN),
             timeout=10
         )
@@ -164,6 +173,7 @@ def process():
     favorites = get_favorites()
 
     for article in favorites:
+        wasVideo = False
         url = article["link"]
 
         if url in indexed:
@@ -172,19 +182,22 @@ def process():
         print("Archiving:", url)
 
         if is_video_url(url):
-            success = send_to_metube(url)
+            success, errorMSG = send_to_metube(url)
+            wasVideo = true
         else:
-            success = send_to_archivebox(url)
+            success, errorMSG = send_to_archivebox(url)
 
         if success:
             print("Success")
             save_to_index(url)
+            if wasVideo:
+                time.sleep(random.randrange(1200, 3600)) # YouTube/Google is much more vigilant about scraper. Even if we use a burner google account, we wouldn't want it banned.
         else:
-            print("Failed")
-            notify_failure(url)
+            print(f"Failed\n{errorMSG}")
+            notify_failure(url, errorMSG)
 
         # avoid hammering services
-        time.sleep(300)
+        time.sleep(60)
 
 
 if __name__ == "__main__":
