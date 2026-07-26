@@ -177,6 +177,9 @@ sudo chmod -R u+rwX /opt/server/resspublica
 sudo chown -R tomasr:tomasr /opt/server/fav-archiver
 sudo chmod -R u+rwX /opt/server/fav-archiver
 
+sudo chown -R tomasr:tomasr /opt/server/freshrss/users/tomasr
+sudo chmod -R u+rwX /opt/server/freshrss/users/tomasr
+
 echo
 echo "Configure rclone now."
 rclone config
