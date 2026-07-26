@@ -112,7 +112,7 @@ def send_to_metube(url):
             timeout=30
         )
 
-        return r.status_code in range(200, 300)
+        return (r.status_code in range(200, 300), "")
 
     except Exception as e:
         print("MeTube error:", e)
@@ -144,11 +144,11 @@ def send_to_archivebox(url):
             return (False, r.stderr)
 
         print(r.stdout)
-        return True
+        return (True, "")
 
     except Exception as e:
         print("ArchiveBox error:", e)
-        return False
+        return (False, e)
 
 def notify_failure(url, text):
     try:
