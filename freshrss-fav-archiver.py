@@ -123,7 +123,7 @@ def send_to_archivebox(url):
                 "compose",
                 "-f",
                 f"{DOCKER_COMPOSE_DIR}/compose.yml",
-                "exec",
+                "run",
                 "-T",
                 "archivebox",
                 "archivebox",
