@@ -184,7 +184,7 @@ def process():
             notify_failure(url)
 
         # avoid hammering services
-        time.sleep(60)
+        time.sleep(300)
 
 
 if __name__ == "__main__":

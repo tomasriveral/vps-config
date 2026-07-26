@@ -244,6 +244,14 @@ docker run --rm -it \
   httpd:2.4-alpine \
   htpasswd -B -c /data/users tomasr
 
+######################################################################3
+# freshrss-fav-archiver
+###########################
+
+step "Initializing freshrss-fav-archiver"
+
+systemctl enable --now freshrss-fav-archiver.timer
+
 ################################################################################
 # Done
 ################################################################################
