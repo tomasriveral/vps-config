@@ -34,7 +34,7 @@ METUBE_PASS = os.environ["METUBE_PASS"]
 NTFY_URL = os.environ["NTFY_URL"]
 NTFY_TOKEN = os.environ["NTFY_TOKEN"]
 
-ARCHIVEBOX_COMPOSE_DIR = os.environ["ARCHIVEBOX_COMPOSE_DIR"]
+DOCKER_COMPOSE_DIR = os.environ["DOCKER_COMPOSE_DIR"]
 
 VIDEO_HOSTS = {
     "youtube.com",
@@ -122,7 +122,7 @@ def send_to_archivebox(url):
                 "docker",
                 "compose",
                 "-f",
-                f"{ARCHIVEBOX_COMPOSE_DIR}/docker-compose.yml",
+                f"{DOCKER_COMPOSE_DIR}/docker-compose.yml",
                 "exec",
                 "-T",
                 "archivebox",
