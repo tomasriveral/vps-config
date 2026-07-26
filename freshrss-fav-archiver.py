@@ -177,7 +177,7 @@ def process():
 
         if is_video_url(url):
             success, errorMSG = send_to_metube(url)
-            wasVideo = true
+            wasVideo = True
         else:
             success, errorMSG = send_to_archivebox(url)
 
