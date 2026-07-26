@@ -170,6 +170,9 @@ mkdir -p \
 
 sudo chown -R 1000:1000 /opt/server/filebrowser # somehow filebrowser cant acces it
 
+sudo chown -R tomasr:tomasr /opt/server/resspublica
+sudo chmod -R u+rwX /opt/server/resspublica
+
 echo
 echo "Configure rclone now."
 rclone config
