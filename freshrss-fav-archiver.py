@@ -150,7 +150,7 @@ def send_to_archivebox(url):
 def notify_failure(url):
     try:
         requests.post(
-            NTFY_URL,
+            NTFY_URL + "/Alerts",
             data=f"Failed to archive {url}",
             auth=("", NTFY_TOKEN),
             timeout=10
