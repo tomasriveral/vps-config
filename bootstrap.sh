@@ -49,7 +49,8 @@ apt install -y \
     unattended-upgrades \
     unzip \
     hledger-web \
-    vim
+    vim \
+    acl
 
 ################################################################################
 # Docker
@@ -177,8 +178,8 @@ sudo chmod -R u+rwX /opt/server/resspublica
 sudo chown -R tomasr:tomasr /opt/server/fav-archiver
 sudo chmod -R u+rwX /opt/server/fav-archiver
 
-sudo chown -R tomasr:tomasr /opt/server/freshrss/users/tomasr
-sudo chmod -R u+rwX /opt/server/freshrss/users/tomasr
+sudo setfacl -R -m u:tomasr:rX /opt/server/freshrss/users/tomasr
+sudo setfacl -m u:tomasr:rw /opt/server/freshrss/users/tomasr/db.sqlite
 
 echo
 echo "Configure rclone now."
