@@ -122,7 +122,7 @@ def send_to_archivebox(url):
                 "docker",
                 "compose",
                 "-f",
-                f"{DOCKER_COMPOSE_DIR}/docker-compose.yml",
+                f"{DOCKER_COMPOSE_DIR}/compose.yml",
                 "exec",
                 "-T",
                 "archivebox",
