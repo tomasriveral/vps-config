@@ -26,7 +26,8 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - /opt/server/caddy/data:/data
       - /opt/server/caddy/config:/config
-      - /home/tomasr/vps-config/web-server:/srv/www
+      - /home/tomasr/vps-config/web-server:/srv/www:ro
+      - /opt/server/resspublica:/srv/resspublica:ro
     extra_hosts:
       - "host.docker.internal:host-gateway"
 

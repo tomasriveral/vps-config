@@ -164,7 +164,9 @@ mkdir -p \
     /opt/server/jellyfin/cache \
     /opt/server/transmute \
     /opt/server/caddy/data \
-    /opt/server/caddy/config
+    /opt/server/caddy/config \
+    /opt/server/resspublica/feed \
+    /opt/server/resspublica/images
 
 sudo chown -R 1000:1000 /opt/server/filebrowser # somehow filebrowser cant acces it
 

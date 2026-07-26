@@ -56,3 +56,38 @@ books.tomasrivera.ch {
 convert.tomasrivera.ch {
   reverse_proxy transmute:3313
 }
+
+resspublica.tomasrivera.ch {
+
+    root * /srv/resspublica
+
+    @rss {
+        path /feed/rss/*
+    }
+
+    handle @rss {
+        header Content-Type "application/rss+xml; charset=utf-8"
+        file_server
+    }
+
+    @atom {
+        path /feed/atom/*
+    }
+
+    handle @atom {
+        header Content-Type "application/atom+xml; charset=utf-8"
+        file_server
+    }
+
+    @images {
+        path /images/*
+    }
+
+    handle @images {
+        file_server
+    }
+
+    handle {
+        respond "404 Not Found" 404
+    }
+}
