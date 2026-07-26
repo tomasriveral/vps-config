@@ -2,7 +2,7 @@
 Description=Run FreshRSS favorite article archiver periodically
 
 [Timer]
-OnBootSec=5min
+OnActiveSec=5min
 OnUnitActiveSec=10min
 Persistent=true
 
