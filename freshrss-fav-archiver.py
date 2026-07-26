@@ -25,13 +25,7 @@ def load_env_file(path=".env"):
             os.environ.setdefault(key, value)
 
 
-load_env_file()Initialize the random number generator.
-
-If a is omitted or None, the current system time is used. If randomness sources are provided by the operating system, they are used instead of the system time (see the os.urandom() function for details on availability).
-
-If a is an int, its absolute value is used directly.
-
-With version 2 (the default), a str, bytes, or bytearray object gets converted to an int and all of its bits are used.
+load_env_file()
 
 FRESHRSS_DB = os.environ["FRESHRSS_DB"]
 ARCHIVE_INDEX = os.environ["ARCHIVE_INDEX"]
