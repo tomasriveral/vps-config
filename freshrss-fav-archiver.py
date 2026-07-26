@@ -46,6 +46,11 @@ VIDEO_HOSTS = {
     "www.dailymotion.com",
 }
 
+print("=== FreshRSS archiver starting ===")
+print("Working directory:", os.getcwd())
+print("Python:", os.sys.executable)
+print("FreshRSS DB:", FRESHRSS_DB)
+print("Archive index:", ARCHIVE_INDEX)
 
 def get_favorites():
     conn = sqlite3.connect(FRESHRSS_DB)

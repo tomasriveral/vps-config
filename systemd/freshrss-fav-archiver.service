@@ -5,7 +5,9 @@ After=network-online.target
 [Service]
 Type=oneshot
 WorkingDirectory=/home/tomasr/vps-config
-ExecStart=/usr/bin/python3 /home/tomasr/vps-config/freshrss-fav-archiver.py
+User=tomasr
+
+ExecStart=/usr/bin/python3 -u /home/tomasr/vps-config/freshrss-fav-archiver.py
 
 StandardOutput=journal
 StandardError=journal
