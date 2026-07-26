@@ -166,12 +166,16 @@ mkdir -p \
     /opt/server/caddy/data \
     /opt/server/caddy/config \
     /opt/server/resspublica/feed \
-    /opt/server/resspublica/images
+    /opt/server/resspublica/images \
+    /opt/server/fav-archiver
 
 sudo chown -R 1000:1000 /opt/server/filebrowser # somehow filebrowser cant acces it
 
 sudo chown -R tomasr:tomasr /opt/server/resspublica
 sudo chmod -R u+rwX /opt/server/resspublica
+
+sudo chown -R tomasr:tomasr /opt/server/fav-archiver
+sudo chmod -R u+rwX /opt/server/fav-archiver
 
 echo
 echo "Configure rclone now."

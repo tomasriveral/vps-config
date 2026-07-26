@@ -1,0 +1,11 @@
+[Unit]
+Description=FreshRSS favorite article archiver
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/tomasr/vps-config
+ExecStart=/usr/bin/python3 /home/tomasr/vps-config/freshrss-fav-archiver.py
+
+StandardOutput=journal
+StandardError=journal
