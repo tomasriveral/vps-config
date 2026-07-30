@@ -1,0 +1,7 @@
+[Unit]
+Descript=Nightly update of the server apt packages and docker images. Also restart all the docker images.
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/tomasr/vps-config/scripts/update.sh

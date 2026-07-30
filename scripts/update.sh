@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 set -e
 
-cd "$(dirname "$0")/.."
+apt update -y
+apt upgrade -y
 
+cd /home/tomasr/vps-config
+
+docker compose down
 docker compose pull
 docker compose up -d
 docker image prune -f

@@ -213,6 +213,7 @@ cp systemd/server-backup.* /etc/systemd/system/
 cp systemd/freshrss-fav-archiver.* /etc/systemd/system/
 systemctl daemon-reload
 systemctl enable --now server-backup.timer
+systemctl enable --now update-server.timer
 systemctl enable --now freshrss-fav-archiver.timer
 
 ###############################################################################
