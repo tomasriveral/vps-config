@@ -9,8 +9,8 @@ services:
       - flatnotes
       - radicale
       - metube
-      - jelu
       - jellyfin
+      - booklogr-web
     image: caddy:latest
     container_name: caddy
     restart: unless-stopped
@@ -137,14 +137,6 @@ services:
 
       # MeTube application state
       - /opt/server/metube:/metube
-  jelu:
-    image: wabayang/jelu:latest
-    container_name: jelu
-    restart: unless-stopped
-    environment:
-      - TZ=Europe/Zurich
-    volumes:
-      - /opt/server/jelu:/data
   jellyfin:
     image: jellyfin/jellyfin:latest
     container_name: jellyfin
@@ -170,7 +162,28 @@ services:
 
     volumes:
       - /opt/server/transmute:/app/data
+      booklogr-api:
+        container_name: "booklogr-api"
+        image: mozzo/booklogr:v1.11.1
+        environment:
+          - DATABASE_URL=sqlite:///books.db
+          - AUTH_ALLOW_REGISTRATION=False
+          - AUTH_REQUIRE_VERIFICATION=False
+          - SINGLE_USER_MODE=True
+          AUTH_SECRET_KEY: "${BOOKLOGR_AUTH_SECRET_KEY}"
+        volumes:
+            - /opt/server/booklogr/api:/app/instance
 
+    booklogr-web:
+        container_name: "booklogr-web"
+        image: mozzo/booklogr-web:v1.11.1
+        env_file:
+            - .env
+        environment:
+            - BL_API_ENDPOINT=http://localhost:5000/ # CHANGE THIS TO POINT TO THE EXTERNAL ADRESS THE USER CAN ACCESS
+            - BL_GOOGLE_ID= # Leave empty to disable google login. To enable, write in your Google Client ID.
+            - BL_DEMO_MODE=false
+        ports:
     environment:
       AUTH_SECRET_KEY: "${TRANSMUTE_SECRET_KEY}"
       AUTH_ACCESS_TOKEN_EXPIRE_MINUTES: 120

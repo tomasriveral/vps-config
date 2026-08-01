@@ -50,7 +50,7 @@ videos.tomasrivera.ch {
 }
 
 books.tomasrivera.ch {
-  reverse_proxy jelu:11111
+  reverse_proxy booklogr-web:5000
 }
 
 convert.tomasrivera.ch {

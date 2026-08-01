@@ -164,15 +164,13 @@ mkdir -p \
     /opt/server/radicale/config \
     /opt/server/radicale/data \
     /opt/server/metube \
-    /opt/server/jelu \
-    /opt/server/jellyfin/config \
-    /opt/server/jellyfin/cache \
     /opt/server/transmute \
     /opt/server/caddy/data \
     /opt/server/caddy/config \
     /opt/server/resspublica/feed \
     /opt/server/resspublica/images \
-    /opt/server/fav-archiver
+    /opt/server/fav-archiver \
+    /opt/server/booklogr/api
 
 sudo chown -R 1000:1000 /opt/server/filebrowser # somehow filebrowser cant acces it
 
