@@ -166,10 +166,10 @@ services:
         container_name: "booklogr-api"
         image: mozzo/booklogr:v1.11.1
         environment:
-          - DATABASE_URL=sqlite:///books.db
-          - AUTH_ALLOW_REGISTRATION=False
-          - AUTH_REQUIRE_VERIFICATION=False
-          - SINGLE_USER_MODE=True
+          DATABASE_URL: "sqlite:///books.db"
+          AUTH_ALLOW_REGISTRATION: False
+          AUTH_REQUIRE_VERIFICATION: False
+          SINGLE_USER_MODE: True
           AUTH_SECRET_KEY: "${BOOKLOGR_AUTH_SECRET_KEY}"
         volumes:
             - /opt/server/booklogr/api:/app/instance
