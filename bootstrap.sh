@@ -172,8 +172,6 @@ mkdir -p \
     /opt/server/fav-archiver \
     /opt/server/booklogr/api
 
-sudo chown -R 1000:1000 /opt/server/filebrowser # somehow filebrowser cant acces it
-
 sudo chown -R tomasr:tomasr /opt/server/resspublica
 sudo chmod -R u+rwX /opt/server/resspublica
 

@@ -6,9 +6,6 @@ tomasrivera.ch {
 archive.tomasrivera.ch {
     reverse_proxy archivebox:8000
 }
-video-archive.tomasrivera.ch {
-    reverse_proxy filebrowser:80
-}
 hledger.tomasrivera.ch {
   log {
     output stdout
