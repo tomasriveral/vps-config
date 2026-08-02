@@ -47,7 +47,7 @@ videos.tomasrivera.ch {
 }
 
 books.tomasrivera.ch {
-  reverse_proxy booklogr-web:5000
+  reverse_proxy booklogr-web:80
 }
 
 convert.tomasrivera.ch {
