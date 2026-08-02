@@ -168,6 +168,8 @@ services:
   booklogr-api:
     container_name: "booklogr-api"
     image: mozzo/booklogr:v1.11.1
+    env_file:
+      - .env
     environment:
       DATABASE_URL: "sqlite:///books.db"
       AUTH_ALLOW_REGISTRATION: False
