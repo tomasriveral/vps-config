@@ -176,6 +176,8 @@ services:
       AUTH_SECRET_KEY: "${BOOKLOGR_AUTH_SECRET_KEY}"
     volumes:
       - /opt/server/booklogr/api:/app/instance
+    ports:
+      - 5002:5000
 
   booklogr-web:
     container_name: "booklogr-web"
@@ -185,7 +187,7 @@ services:
     ports:
       - 5001:5001
     environment:
-      - BL_API_ENDPOINT=http://booklogr-api:5000/ # CHANGE THIS TO POINT TO THE EXTERNAL ADRESS THE USER CAN ACCESS
+      - BL_API_ENDPOINT=http://localhost:5002/ # CHANGE THIS TO POINT TO THE EXTERNAL ADRESS THE USER CAN ACCESS
       - BL_GOOGLE_ID= # Leave empty to disable google login. To enable, write in your Google Client ID.
       - BL_DEMO_MODE=false
     depends_on:
