@@ -4,4 +4,4 @@ After=local-fs.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/rsync -a --delete /opt/server/ /mnt/kdrive/serverBackup/
+ExecStart=/usr/bin/rsync -a --size-only --delete /opt/server/ /mnt/kdrive/serverBackup/
