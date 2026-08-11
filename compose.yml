@@ -10,6 +10,7 @@ services:
       - radicale
       - metube
       - jellyfin
+      - gitea
     image: caddy:latest
     container_name: caddy
     restart: unless-stopped
@@ -164,3 +165,21 @@ services:
     environment:
       AUTH_SECRET_KEY: "${TRANSMUTE_SECRET_KEY}"
       AUTH_ACCESS_TOKEN_EXPIRE_MINUTES: 120
+  gitea:
+    image: gitea/gitea:latest
+    container_name: gitea
+    restart: unless-stopped
+  
+    environment:
+      USER_UID: 1000
+      USER_GID: 1000
+      TZ: "Europe/Zurich"
+      GITEA__server__ROOT_URL: "${GITEA_ROOT_URL}"
+      GITEA__server__HTTP_PORT: 3000
+      GITEA__database__DB_TYPE: "sqlite3"
+      GITEA__database__PATH: "/data/gitea/gitea.db"
+      GITEA__service__DISABLE_REGISTRATION: true
+      GITEA__service__REQUIRE_SIGNIN_VIEW: false
+  
+    volumes:
+      - /opt/server/gitea:/data

@@ -169,7 +169,8 @@ mkdir -p \
     /opt/server/caddy/config \
     /opt/server/resspublica/feed \
     /opt/server/resspublica/images \
-    /opt/server/fav-archiver
+    /opt/server/fav-archiver \
+    /opt/server/gitea
 
 sudo chown -R tomasr:tomasr /opt/server/resspublica
 sudo chmod -R u+rwX /opt/server/resspublica

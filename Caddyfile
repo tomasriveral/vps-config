@@ -50,6 +50,10 @@ convert.tomasrivera.ch {
   reverse_proxy transmute:3313
 }
 
+git.tomasrivera.ch {
+  reverse_proxy gitea:3000
+}
+
 resspublica.tomasrivera.ch {
 
     root * /srv/resspublica
