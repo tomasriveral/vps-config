@@ -169,8 +169,7 @@ mkdir -p \
     /opt/server/caddy/config \
     /opt/server/resspublica/feed \
     /opt/server/resspublica/images \
-    /opt/server/fav-archiver \
-    /opt/server/booklogr/api
+    /opt/server/fav-archiver
 
 sudo chown -R tomasr:tomasr /opt/server/resspublica
 sudo chmod -R u+rwX /opt/server/resspublica
