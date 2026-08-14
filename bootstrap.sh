@@ -140,16 +140,25 @@ chown "$USERNAME:$USERNAME" \
 ################################################################################
 
 step "Initializing environment"
-
-if [ ! -f "/home/$USERNAME/$REPO_DIR/.env" ]; then
-    cp "/home/$USERNAME/$REPO_DIR/.env.example" \
-       "/home/$USERNAME/$REPO_DIR/.env"
+if [ ! -f "/home/$USERNAME/$REPO_DIR/.flatnotes.env" ]; then
+    cp "/home/$USERNAME/$REPO_DIR/.flatnotes.env.example" \
+       "/home/$USERNAME/$REPO_DIR/.flatnotes.env"
 
     chown "$USERNAME:$USERNAME" \
-        "/home/$USERNAME/$REPO_DIR/.env"
+        "/home/$USERNAME/$REPO_DIR/.flatnotes.env"
 
     chmod 600 \
-        "/home/$USERNAME/$REPO_DIR/.env"
+        "/home/$USERNAME/$REPO_DIR/.flatnotes.env"
+
+if [ ! -f "/home/$USERNAME/$REPO_DIR/.flatnotes.env" ]; then
+    cp "/home/$USERNAME/$REPO_DIR/.flatnotes.env.example" \
+       "/home/$USERNAME/$REPO_DIR/.flatnotes.env"
+
+    chown "$USERNAME:$USERNAME" \
+        "/home/$USERNAME/$REPO_DIR/.flatnotes.env"
+
+    chmod 600 \
+        "/home/$USERNAME/$REPO_DIR/.flatnotes.env"
 
     cat <<EOF
 

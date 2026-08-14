@@ -99,12 +99,11 @@ services:
 
     environment:
       - TZ=Europe/Zurich
-      - FLATNOTES_USERNAME=${FLATNOTES_USERNAME}
-      - FLATNOTES_PASSWORD=${FLATNOTES_PASSWORD}
-      - FLATNOTES_SECRET_KEY=${FLATNOTES_SECRET_KEY}
-
     volumes:
       - /mnt/kdrive/Notes/quicknotes:/data
+    env_file:
+      - /home/tomasr/vps-config/.flatnotes.env
+
   radicale:
     image: tomsquest/docker-radicale:latest
     container_name: radicale

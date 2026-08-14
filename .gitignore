@@ -1,6 +1,6 @@
 # Secrets
 .env
-
+.flatnotes.env
 # Docker data
 data/
 volumes/
