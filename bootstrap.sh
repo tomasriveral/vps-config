@@ -50,10 +50,12 @@ apt install -y \
     unzip \
     hledger-web \
     vim \
-    acl
+    acl \
+    python3 \
+    python3-venv
 
 # base setup
-echo 'export SYSTEMD_PAGER=cat' >> ~/.bashr
+echo 'export SYSTEMD_PAGER=cat' >> ~/.bashrc
 source /home/tomasr/.bashrc
 
 ################################################################################
@@ -125,6 +127,89 @@ fi
 cd "/home/$USERNAME/$REPO_DIR"
 chown -R "$USERNAME:$USERNAME" "/home/$USERNAME/"
 
+chmod +x \
+    "/home/$USERNAME/$REPO_DIR/scripts/icloud-auth.sh" \
+    "/home/$USERNAME/$REPO_DIR/scripts/backup-icloud.sh"
+
+chown "$USERNAME:$USERNAME" \
+    "/home/$USERNAME/$REPO_DIR/scripts/icloud-auth.sh" \
+    "/home/$USERNAME/$REPO_DIR/scripts/backup-icloud.sh"
+
+################################################################################
+# Environment
+################################################################################
+
+step "Initializing environment"
+
+if [ ! -f "/home/$USERNAME/$REPO_DIR/.env" ]; then
+    cp "/home/$USERNAME/$REPO_DIR/.env.example" \
+       "/home/$USERNAME/$REPO_DIR/.env"
+
+    chown "$USERNAME:$USERNAME" \
+        "/home/$USERNAME/$REPO_DIR/.env"
+
+    chmod 600 \
+        "/home/$USERNAME/$REPO_DIR/.env"
+
+    cat <<EOF
+
+==============================================================================
+Environment file created
+==============================================================================
+
+Edit:
+
+    /home/$USERNAME/$REPO_DIR/.env
+
+Make sure the following values are filled in:
+
+    ICLOUD_EMAIL
+    ICLOUD_PASSWORD
+
+The iCloud backup cannot authenticate until these are configured.
+
+After filling them in, run:
+
+    sudo -u $USERNAME /home/$USERNAME/$REPO_DIR/scripts/icloud-auth.sh
+
+This will perform the interactive iCloud authentication and ask for
+your 2FA code if required.
+
+==============================================================================
+EOF
+fi
+
+################################################################################
+# icloudpd
+################################################################################
+
+step "Installing icloudpd"
+
+sudo -u "$USERNAME" python3 -m venv \
+    "/home/$USERNAME/.venvs/icloudpd"
+
+sudo -u "$USERNAME" \
+    "/home/$USERNAME/.venvs/icloudpd/bin/pip" \
+    install --upgrade pip
+
+sudo -u "$USERNAME" \
+    "/home/$USERNAME/.venvs/icloudpd/bin/pip" \
+    install icloudpd
+
+################################################################################
+# icloudpd authentication
+################################################################################
+
+step "Preparing icloudpd authentication"
+
+mkdir -p "/home/$USERNAME/.icloudpd"
+
+chown "$USERNAME:$USERNAME" \
+    "/home/$USERNAME/.icloudpd"
+
+chmod 700 \
+    "/home/$USERNAME/.icloudpd"
+
 ################################################################################
 # Security
 ################################################################################
@@ -187,7 +272,8 @@ rclone config
 
 cp systemd/kdrive-rclone.service \
    /etc/systemd/system/
-
+cp systemd/icloud-backup.service \
+   /etc/systemd/system/
 systemctl daemon-reload
 systemctl enable --now kdrive-rclone
 
@@ -253,6 +339,28 @@ docker run --rm -it \
 step "Initializing freshrss-fav-archiver"
 
 systemctl enable --now freshrss-fav-archiver.timer
+
+
+################################################################################
+# iCloud backup
+################################################################################
+
+step "Configuring iCloud backup"
+
+systemctl enable icloud-backup.service
+
+echo
+echo "iCloud backup service has been installed."
+echo
+echo "Before starting it, configure .env and authenticate iCloud:"
+echo
+echo "    vim /home/$USERNAME/$REPO_DIR/.env"
+echo "    sudo -u $USERNAME $REPO_DIR/scripts/icloud-auth.sh"
+echo
+echo "Then start the service with:"
+echo
+echo "    systemctl enable --now icloud-backup.service"
+echo
 
 ################################################################################
 # Done

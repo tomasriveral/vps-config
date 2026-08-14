@@ -1,0 +1,20 @@
+[Unit]
+Description=iCloud Photo Backup
+After=network-online.target kdrive-rclone.service
+Wants=network-online.target
+Requires=kdrive-rclone.service
+
+[Service]
+Type=simple
+User=tomasr
+Group=tomasr
+
+WorkingDirectory=/home/tomasr/vps-config
+
+ExecStart=/home/tomasr/vps-config/scripts/backup-icloud.sh
+
+Restart=on-failure
+RestartSec=5min
+
+[Install]
+WantedBy=multi-user.target
