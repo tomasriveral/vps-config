@@ -12,15 +12,21 @@ if [[ ! -f "$ENV_FILE" ]]; then
     exit 1
 fi
 
-# shellcheck disable=SC1090
-source "$ENV_FILE"
+get_env_value() {
+    local key="$1"
 
-if [[ -z "${ICLOUD_EMAIL:-}" ]]; then
+    sed -n "s/^${key}=//p" "$ENV_FILE" | head -n 1
+}
+
+ICLOUD_EMAIL="$(get_env_value ICLOUD_EMAIL)"
+ICLOUD_PASSWORD="$(get_env_value ICLOUD_PASSWORD)"
+
+if [[ -z "$ICLOUD_EMAIL" ]]; then
     echo "ERROR: ICLOUD_EMAIL is not configured."
     exit 1
 fi
 
-if [[ -z "${ICLOUD_PASSWORD:-}" ]]; then
+if [[ -z "$ICLOUD_PASSWORD" ]]; then
     echo "ERROR: ICLOUD_PASSWORD is not configured."
     exit 1
 fi
