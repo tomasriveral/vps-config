@@ -162,8 +162,9 @@ services:
     volumes:
       - /opt/server/transmute:/app/data
     environment:
-      AUTH_SECRET_KEY: "${TRANSMUTE_SECRET_KEY}"
       AUTH_ACCESS_TOKEN_EXPIRE_MINUTES: 120
+    env_file:
+      - /home/tomasr/vps-config/.transmute.env
   gitea:
     image: gitea/gitea:latest
     container_name: gitea

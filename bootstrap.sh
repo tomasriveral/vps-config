@@ -150,15 +150,25 @@ if [ ! -f "/home/$USERNAME/$REPO_DIR/.flatnotes.env" ]; then
     chmod 600 \
         "/home/$USERNAME/$REPO_DIR/.flatnotes.env"
 
-if [ ! -f "/home/$USERNAME/$REPO_DIR/.flatnotes.env" ]; then
-    cp "/home/$USERNAME/$REPO_DIR/.flatnotes.env.example" \
-       "/home/$USERNAME/$REPO_DIR/.flatnotes.env"
+if [ ! -f "/home/$USERNAME/$REPO_DIR/.transmute.env" ]; then
+    cp "/home/$USERNAME/$REPO_DIR/.transmute.env.example" \
+       "/home/$USERNAME/$REPO_DIR/.transmute.env"
 
     chown "$USERNAME:$USERNAME" \
-        "/home/$USERNAME/$REPO_DIR/.flatnotes.env"
+        "/home/$USERNAME/$REPO_DIR/.transmute.env"
+    chmod 600 \
+        "/home/$USERNAME/$REPO_DIR/.transmute.env"
+
+
+if [ ! -f "/home/$USERNAME/$REPO_DIR/.env" ]; then
+    cp "/home/$USERNAME/$REPO_DIR/.env.example" \
+       "/home/$USERNAME/$REPO_DIR/.env"
+
+    chown "$USERNAME:$USERNAME" \
+        "/home/$USERNAME/$REPO_DIR/.env"
 
     chmod 600 \
-        "/home/$USERNAME/$REPO_DIR/.flatnotes.env"
+        "/home/$USERNAME/$REPO_DIR/.env"
 
     cat <<EOF
 
